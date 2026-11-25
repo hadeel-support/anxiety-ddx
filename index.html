@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>التشخيص التفريقي للقلق</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Readex+Pro:wght@500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday learning, calm and clinical; an expert's pocket reference for students
+   IDEA a clinician's decision pathway card: stations you pass through before naming a disorder
+   PICTURE the live decision tree at the top: a route of five stations beside the current question or verdict
+   COLOUR white ground, deep plum band, coral accent; one fixed hue per disorder carried through every section
+   TYPE Readex Pro for titles + IBM Plex Sans Arabic for text, Inter for English terms
+   LAYOUT laptop: route column beside a wide question panel; phone: title, route as a chip strip, panel */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#15131a);--ink:light-dark(#1b1822,#eeeaf3);--mute:light-dark(#5d5768,#aaa3b6);--line:light-dark(#e3dfe9,#2e2a37);--panel:light-dark(#f5f2f8,#1e1b25);--plum:light-dark(#43235f,#26163a);--acc:light-dark(#d4402c,#ff7c66);--c-gad:light-dark(#9a6400,#e7b04c);--c-panic:light-dark(#c8371f,#ff8470);--c-sad:light-dark(#2254c0,#86a9ff);--c-phobia:light-dark(#a3276a,#ef80bd);--c-ptsd:light-dark(#5b3486,#bc98e8);--c-oth:light-dark(#5d5768,#aaa3b6)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:24px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.7 "IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Readex Pro","IBM Plex Sans Arabic",sans-serif;line-height:1.2;margin:0;text-wrap:balance}
+h1{font-size:clamp(30px,4.6vw,48px);font-weight:700}
+h2{font-size:clamp(24px,3vw,32px);font-weight:600}
+h3{font-size:19px;font-weight:600}
+p{margin:0}
+.en{font-family:Inter,system-ui,sans-serif;direction:ltr;unicode-bidi:isolate;font-size:.92em}
+.band{padding-block:clamp(28px,4vw,60px);padding-inline:max(5vw,16px)}
+.wrap{max-width:1240px;margin-inline:auto}
+.alt{background:var(--panel)}
+.top{background:var(--plum);color:#fff}
+.top .wrap{display:grid;gap:14px}
+.lede{font-size:18px;max-width:62ch;color:#e9e1f2}
+.warn{max-width:70ch;font-size:15px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);padding:10px 14px;border-radius:10px}
+.links{display:flex;gap:8px;margin-top:6px;padding-bottom:2px}
+.links a{flex:none;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 16px;font-weight:500}
+.links a:hover,.links a:focus-visible{background:#fff;color:var(--plum);outline:none}
+.scroll{overflow-x:auto}
+.sub{color:var(--mute);max-width:70ch;margin-top:8px}
+.head{margin-bottom:22px}
+.tree{display:grid;grid-template-columns:minmax(200px,260px) minmax(0,1fr);gap:clamp(16px,3vw,36px);align-items:start}
+.route{list-style:none;margin:0;padding:0;position:relative}
+.route::before{content:"";position:absolute;inset-block:14px;inset-inline-start:11px;width:2px;background:var(--line)}
+.route li{position:relative;padding-inline-start:38px;padding-block:8px 14px}
+.route li::before{content:"";position:absolute;inset-inline-start:4px;top:13px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--line)}
+.route li.done::before{background:var(--plum);border-color:var(--plum)}
+.route li.now::before{background:var(--acc);border-color:var(--acc);box-shadow:0 0 0 5px color-mix(in srgb,var(--acc) 22%,transparent)}
+.route b{display:block;font-weight:600}
+.route small{display:block;color:var(--mute);font-size:14px;line-height:1.45}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,30px)}
+.q{font-family:"Readex Pro",sans-serif;font-size:clamp(21px,2.6vw,27px);font-weight:600;line-height:1.35;text-wrap:balance}
+.hint{margin-top:12px;color:var(--mute);background:var(--panel);border-radius:10px;padding:12px 14px;font-size:15.5px}
+.opts{display:grid;gap:10px;margin-top:18px}
+button{font:inherit;color:inherit;cursor:pointer}
+.opt{text-align:start;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;min-height:48px;font-weight:500;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--plum);background:var(--panel)}
+.opt:focus-visible,.btn:focus-visible,.pill:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{border:1.5px solid var(--line);background:var(--bg);border-radius:999px;padding:9px 18px;min-height:44px;font-weight:500}
+.btn.main{background:var(--plum);border-color:var(--plum);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.res{background:color-mix(in srgb,var(--k) 9%,var(--bg));border-color:color-mix(in srgb,var(--k) 40%,var(--line))}
+.tag{display:inline-block;font-size:14px;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--k) 16%,var(--bg));color:var(--k);font-weight:600;margin-bottom:10px}
+.res h3{font-size:clamp(22px,2.8vw,28px)}
+.res .v{margin-top:8px;font-size:17px}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
+.cols h4{margin:0 0 6px;font-size:15px;color:var(--mute);font-weight:600}
+ul.l{margin:0;padding-inline-start:20px}
+ul.l li{margin-bottom:6px}
+.trail{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;font-size:14px;color:var(--mute)}
+.trail span{background:var(--panel);border-radius:8px;padding:3px 10px}
+.pairs{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:1.5px solid var(--line);background:var(--bg);border-radius:999px;padding:8px 14px;min-height:44px;font-size:15px}
+.pill[aria-pressed=true]{background:var(--plum);border-color:var(--plum);color:#fff}
+.vs{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:stretch;margin-top:18px}
+.vs .side{border-radius:14px;padding:18px;background:color-mix(in srgb,var(--k) 9%,var(--bg));border:1px solid color-mix(in srgb,var(--k) 35%,var(--line))}
+.vs .side h3{color:var(--k);margin-bottom:6px}
+.vs .mid{align-self:center;font-family:"Readex Pro",sans-serif;color:var(--mute);font-size:15px}
+.keyq{margin-top:18px;font-family:"Readex Pro",sans-serif;font-size:20px;font-weight:600}
+.keyq em{font-style:normal;color:var(--acc)}
+.tw{margin-top:34px}
+table{border-collapse:collapse;width:100%;margin-top:12px;font-size:15px;background:var(--bg);border-radius:12px;overflow:hidden}
+th,td{text-align:start;vertical-align:top;padding:11px 12px;border-bottom:1px solid var(--line)}
+thead th{font-family:"Readex Pro",sans-serif;font-weight:600;color:var(--k,var(--ink))}
+tbody th{color:var(--mute);font-weight:600;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.crit{border-top:4px solid var(--k)}
+.crit h3{color:var(--k)}
+.crit .meta{color:var(--mute);font-size:14.5px;margin:4px 0 12px}
+.note{margin-top:18px;max-width:75ch;color:var(--mute)}
+.quiz{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(16px,3vw,32px);align-items:start}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.dots button{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg);font-size:14px;font-family:Inter,sans-serif}
+.dots .cur{border-color:var(--plum);border-width:3px}
+.dots .ok{background:color-mix(in srgb,#1a8a5a 22%,var(--bg));border-color:#1a8a5a}
+.dots .no{background:color-mix(in srgb,var(--acc) 22%,var(--bg));border-color:var(--acc)}
+.case h3{font-size:22px;margin-bottom:8px}
+.case p.x{font-size:17px}
+.opt.right{border-color:#1a8a5a;background:color-mix(in srgb,#1a8a5a 12%,var(--bg))}
+.opt.wrong{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--bg))}
+.opt:disabled{cursor:default}
+.fb{margin-top:16px;border-radius:12px;padding:14px 16px;background:var(--panel)}
+.fb b{font-family:"Readex Pro",sans-serif}
+.score{font-family:"Readex Pro",sans-serif;font-size:clamp(40px,6vw,60px);font-weight:700;line-height:1}
+.side-panel h3{margin-bottom:8px}
+footer{font-size:15px;color:var(--mute)}
+footer .wrap{display:grid;gap:8px}
+@media(max-width:860px){.tree{grid-template-columns:minmax(0,1fr)}.route{display:flex;overflow-x:auto;gap:4px;padding-bottom:6px}.route::before{display:none}.route li{flex:none;padding:6px 12px 6px 12px;border:1px solid var(--line);border-radius:999px}.route li::before{display:none}.route li.now{border-color:var(--acc);color:var(--acc)}.route li.done{border-color:var(--plum)}.route small{display:none}.quiz{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.cols{grid-template-columns:minmax(0,1fr)}.vs{grid-template-columns:minmax(0,1fr)}.vs .mid{justify-self:center}table{font-size:13.5px}th,td{padding:6px 4px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td,.stack tbody th{display:flex;justify-content:space-between;gap:12px;border:0;white-space:normal}.stack td::before{content:attr(data-l);color:var(--mute);flex:none;max-width:42%}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="band top">
+ <div class="wrap">
+  <h1>التشخيص التفريقي لاضطرابات القلق</h1>
+  <p class="lede">تمرين على التفكير السريري لخمسة اضطرابات تتداخل أعراضها: القلق المعمّم، والهلع، والقلق الاجتماعي، والرهاب المحدد، واضطراب ما بعد الصدمة.</p>
+  <p class="warn">أداة تعليمية للتدريب فقط، مبنية على معايير <span class="en">DSM-5-TR</span>. لا تُستخدم لتشخيص أشخاص حقيقيين، ولا تُغني عن المقابلة السريرية الكاملة والحكم المهني للأخصائي.</p>
+  <nav class="scroll links" aria-label="أقسام الأداة"><a href="#tree">شجرة القرار</a><a href="#compare">المقارنات</a><a href="#criteria">ملخص المعايير</a><a href="#cases">حالات تدريبية</a></nav>
+ </div>
+</header>
+
+<section id="tree" class="band">
+ <div class="wrap">
+  <div class="head"><h2>شجرة القرار</h2><p class="sub">أجب عن الأسئلة بالترتيب الذي يتبعه الأخصائي: استبعد الأسباب الطبية أولاً، ثم الصدمة، ثم نوبات الهلع، ثم حدّد محور الخوف.</p></div>
+  <div class="tree">
+   <ol class="route" id="route"></ol>
+   <div id="panel"></div>
+  </div>
+ </div>
+</section>
+
+<section id="compare" class="band alt">
+ <div class="wrap">
+  <div class="head"><h2>كيف أفرّق بين اضطرابين متشابهين؟</h2><p class="sub">اختر زوجاً لترى السؤال الذي يحسم الفرق بينهما.</p></div>
+  <div class="pairs" id="pairs" role="group" aria-label="أزواج المقارنة"></div>
+  <div id="pair"></div>
+  <div class="tw">
+   <h3>جدول المقارنة</h3>
+   <div class="scroll"><table class="stack" id="ftable"></table></div>
+  </div>
+ </div>
+</section>
+
+<section id="criteria" class="band">
+ <div class="wrap">
+  <div class="head"><h2>ملخص المعايير</h2><p class="sub">صياغة مختصرة للمعايير الأساسية لكل اضطراب. ارجع إلى الدليل نفسه للنص الكامل والمحدِّدات.</p></div>
+  <div class="grid" id="crit"></div>
+  <p class="note">ملاحظة: نُقل اضطراب ما بعد الصدمة في <span class="en">DSM-5</span> من فئة اضطرابات القلق إلى فئة مستقلة هي الاضطرابات المرتبطة بالصدمة والضغوط <span class="en">(Trauma- and Stressor-Related Disorders)</span>، لكنه يبقى من أهم ما يُفرَّق عنه في عيادة القلق.</p>
+ </div>
+</section>
+
+<section id="cases" class="band alt">
+ <div class="wrap">
+  <div class="head"><h2>حالات تدريبية</h2><p class="sub">عشر حالات قصيرة، بعضها فيه فخ مقصود. اقرأ الحالة واختر التشخيص الأرجح، ثم اقرأ التعليل. الحالات والأسماء متخيَّلة لأغراض التدريب.</p></div>
+  <div class="quiz">
+   <div id="quiz"></div>
+   <aside class="card side-panel" id="qside"></aside>
+  </div>
+ </div>
+</section>
+
+<footer class="band">
+ <div class="wrap">
+  <p><b>المراجع:</b> <span class="en">American Psychiatric Association (2022). Diagnostic and Statistical Manual of Mental Disorders, 5th ed., Text Revision (DSM-5-TR).</span> · <span class="en">First, M. B. DSM-5-TR Handbook of Differential Diagnosis. APA Publishing.</span></p>
+  <p>المعايير هنا ملخّصة بصياغة تعليمية وليست نصاً منقولاً من الدليل. التشخيص الفعلي يحتاج تقييماً سريرياً شاملاً وتاريخاً طبياً ونفسياً كاملاً.</p>
+  <p>إعداد: هديل سامي، ماجستير علم النفس الإكلينيكي.</p>
+ </div>
+</footer>
+
+<script>
+{
+const E=s=>`<span class="en">${s}</span>`;
+const ST=[['استبعاد الأسباب','مادة، دواء، أو حالة طبية'],['الصدمة','حدث صادم ومدة الأعراض'],['نوبات الهلع','متوقعة أم مفاجئة؟'],['محور الخوف','ممّ يخاف بالتحديد؟'],['القلق المعمّم','المدة والأعراض']];
+const N={
+q1:{s:0,q:'هل يمكن أن تكون الأعراض ناتجة عن مادة أو دواء أو حالة طبية؟',h:'اسأل عن الكافيين ومشروبات الطاقة، والمنشّطات، والكورتيزون، والانسحاب من الكحول أو المهدئات. ومن الحالات الطبية: فرط نشاط الغدة الدرقية، واضطراب نظم القلب، وانخفاض السكر، والربو.',o:[['نعم، أو لم يُستبعد ذلك بعد','R:med'],['لا، تم الاستبعاد','q2']]},
+q2:{s:1,q:'هل تعرّض الشخص لحدث صادم، وترتبط الأعراض به؟',h:'الحدث الصادم (المعيار A): موت فعلي أو تهديد به، أو إصابة خطيرة، أو عنف جنسي، بالتعرض المباشر أو المشاهدة أو معرفة أنه حدث لقريب أو التعرض المتكرر لتفاصيله بحكم العمل. مشاهدة الأخبار لا تُحسب إلا إذا كانت جزءاً من العمل.',o:[['نعم، والأعراض مرتبطة بالحدث','q2b'],['حدث ضاغط لكنه لا يستوفي تعريف الصدمة','R:adj'],['لا','q3']]},
+q2b:{s:1,q:'كم مضى على بدء الأعراض بعد الحدث؟',o:[['أقل من 3 أيام','R:early'],['من 3 أيام إلى شهر','R:asd'],['أكثر من شهر','q2c']]},
+q2c:{s:1,q:'هل تتوفر الأعراض في المجموعات الأربع؟',h:'اقتحام (عرض واحد على الأقل)، وتجنّب (عرض واحد)، وتغيّرات سلبية في الأفكار والمزاج (عرضان)، وتغيّرات في الاستثارة والتفاعل (عرضان).',o:[['نعم، في المجموعات الأربع','R:ptsd'],['بعضها فقط','R:adj']]},
+q3:{s:2,q:'هل توجد نوبات هلع؟',h:'نوبة الهلع موجة مفاجئة من خوف أو انزعاج شديد تبلغ ذروتها خلال دقائق، مع 4 أعراض أو أكثر من 13، مثل الخفقان والتعرق والارتجاف وضيق النفس وألم الصدر والدوخة والخوف من الموت أو فقدان السيطرة.',o:[['نعم','q3b'],['لا','q4']]},
+q3b:{s:2,q:'هل تأتي بعض النوبات بشكل غير متوقع، دون محفّز واضح؟',h:`إذا كانت كل النوبات مرتبطة بمحفّز محدد (كلب، تقديم أمام الناس، مُذكِّر بالصدمة)، فهي غالباً جزء من اضطراب آخر، وتُضاف كمحدِّد ${E('with panic attacks')}.`,o:[['نعم، بعضها يأتي فجأة','q3c'],['لا، كلها مرتبطة بمحفّز محدد','q4']]},
+q3c:{s:2,q:'هل تلا نوبةً واحدة على الأقل شهرٌ أو أكثر من الانشغال بها؟',h:'قلق مستمر من نوبات جديدة أو من عواقبها (سأصاب بجلطة، سأفقد عقلي)، أو تغيير سلوكي غير تكيّفي مثل تجنّب الرياضة أو الأماكن غير المألوفة.',o:[['نعم','R:panic'],['لا','q4']]},
+q4:{s:3,q:'على ماذا يتركّز الخوف أو القلق؟',o:[['نظرة الآخرين وتقييمهم في المواقف الاجتماعية','R:sad'],['شيء أو موقف محدد واحد','R:phobia'],['مواقف متعددة يصعب الهروب منها أو طلب المساعدة فيها','R:agora'],['هموم متعددة في مجالات الحياة المختلفة','q5'],['الانفصال عن أشخاص التعلّق','R:sep'],['أفكار اقتحامية تتبعها أفعال قهرية','R:ocd'],['الإصابة بمرض خطير','R:ill']]},
+q5:{s:4,q:'هل القلق مفرط ويصعب التحكم به، في معظم الأيام، لمدة 6 أشهر على الأقل، مع 3 أعراض أو أكثر؟',h:'الأعراض الستة: تململ، تعب سريع، صعوبة تركيز أو فراغ الذهن، عصبية، شد عضلي، اضطراب النوم. عند الأطفال يكفي عرض واحد.',o:[['نعم','q5b'],['لا، أقل من ذلك','R:osad']]},
+q5b:{s:4,q:'هل يظهر القلق فقط خلال نوبة اكتئاب، أو يفسّره اضطراب آخر بشكل أفضل؟',o:[['نعم','R:mood'],['لا','R:gad']]}
+};
+const R={
+med:{k:'oth',n:'قلق ناتج عن مادة أو حالة طبية',e:'Substance/Medication-Induced Anxiety Disorder · Anxiety Disorder Due to Another Medical Condition',v:'لا تنتقل إلى تشخيص اضطراب قلق أولي قبل استبعاد السبب العضوي.',c:['العلاقة الزمنية: هل بدأت الأعراض مع بدء المادة أو المرض، وهل تتحسن بإيقافها أو بعلاجه؟','فحوصات أساسية حسب الحالة: وظائف الغدة الدرقية، تخطيط القلب، سكر الدم.','الكافيين ومشروبات الطاقة والمنشّطات والكورتيزون وموسّعات القصبات والانسحاب من الكحول أو البنزوديازيبينات.'],w:['وجود سبب طبي لا يمنع وجود اضطراب قلق مستقل؛ إذا سبق القلقُ المادةَ أو استمر طويلاً بعد زوالها، فكّر باضطراب أولي.']},
+early:{k:'ptsd',n:'استجابة حادة للضغط',e:'Normal acute stress response',v:'لا يُشخَّص اضطراب الكرب الحاد قبل مرور 3 أيام على الحدث؛ أعراض الأيام الأولى شائعة وكثيراً ما تتراجع وحدها.',c:['الإسعاف النفسي الأولي والدعم والأمان.','أعد التقييم بعد 3 أيام إذا استمرت الأعراض.'],w:['انتبه لخطر الانتحار أو تعاطي المواد حتى في المرحلة المبكرة.']},
+asd:{k:'ptsd',n:'اضطراب الكرب الحاد',e:'Acute Stress Disorder',v:'الأعراض بعد الصدمة حاضرة، لكن المدة أقصر من أن تكون اضطراب ما بعد الصدمة.',c:['9 أعراض أو أكثر من 14 موزعة على: الاقتحام، والمزاج السلبي، والتفارق، والتجنّب، والاستثارة.','المدة من 3 أيام إلى شهر بعد الحدث.'],w:['إذا استمرت الأعراض أكثر من شهر أعد التقييم لاضطراب ما بعد الصدمة.']},
+ptsd:{k:'ptsd',n:'اضطراب ما بعد الصدمة',e:'Posttraumatic Stress Disorder',v:'حدث يستوفي المعيار A، مع أعراض في المجموعات الأربع لأكثر من شهر.',c:['اقتحام: ذكريات، كوابيس، استرجاع، ضيق أو تفاعل جسدي عند التذكير (1 على الأقل).','تجنّب الذكريات أو المُذكِّرات الخارجية (1 على الأقل).','تغيّرات سلبية في الأفكار والمزاج: لوم الذات، انفصال عن الناس، عجز عن المشاعر الإيجابية (2 على الأقل).','استثارة: فزع، يقظة مفرطة، عصبية، اضطراب نوم وتركيز (2 على الأقل).'],w:[`المحدِّدان: مع أعراض تفارقية، ومع تأخر الظهور ${E('(delayed expression)')} إذا لم تكتمل المعايير إلا بعد 6 أشهر.`,'نوبات الهلع والتجنّب عند التذكير جزء من الصورة، ولا تعني تلقائياً اضطراب هلع أو رهاباً.']},
+adj:{k:'oth',n:'اضطراب التكيّف أو اضطراب آخر محدد مرتبط بالصدمة',e:'Adjustment Disorder · Other Specified Trauma- and Stressor-Related Disorder',v:'الضغط حقيقي والأعراض واضحة، لكنها لا تستوفي معايير اضطراب ما بعد الصدمة.',c:['ظهور الأعراض خلال 3 أشهر من الضغط.','الضيق غير متناسب مع الضغط، أو يؤثر على الأداء.','لا تستمر أكثر من 6 أشهر بعد زوال الضغط وعواقبه.'],w:['إذا كانت الصورة تستوفي معايير اضطراب قلق محدد، فذلك التشخيص يتقدّم على التكيّف.']},
+panic:{k:'panic',n:'اضطراب الهلع',e:'Panic Disorder',v:'نوبات مفاجئة متكررة، تلاها شهر أو أكثر من الخوف منها أو تغيير السلوك بسببها.',c:['نوبات هلع متكررة غير متوقعة، في كل نوبة 4 أعراض أو أكثر من 13.','شهر على الأقل من القلق من نوبات جديدة أو عواقبها، أو تغيير سلوكي غير تكيّفي.','استبعاد المواد والحالات الطبية، خاصة القلب والغدة الدرقية.'],w:['قيّم رهاب الساح بشكل منفصل؛ يمكن تشخيص الاثنين معاً في DSM-5-TR.','الاستيقاظ من النوم بنوبة هلع يرجّح الهلع على القلق الاجتماعي.']},
+sad:{k:'sad',n:'اضطراب القلق الاجتماعي',e:'Social Anxiety Disorder',v:'الخوف مرتبط بالتقييم: أن يُحرَج أو يُرفض أو يلاحظ الناس قلقه.',c:['خوف واضح من مواقف قد يُراقَب فيها: محادثة، أكل أمام الآخرين، تقديم.','المواقف تثير الخوف دائماً تقريباً، وتُتجنّب أو تُحتمل بضيق شديد.','الخوف أكبر من الخطر الفعلي، ويستمر 6 أشهر عادة.','عند الأطفال يجب أن يظهر مع الأقران، لا مع الكبار فقط.'],w:[`محدِّد ${E('performance only')} إذا اقتصر الخوف على التحدث أو الأداء أمام جمهور.`,'فرّق عن الشخصية التجنّبية (أوسع وأقدم)، وعن طيف التوحّد (صعوبة في المهارات لا خوف من التقييم).']},
+phobia:{k:'phobia',n:'الرهاب المحدد',e:'Specific Phobia',v:'خوف فوري وثابت من شيء أو موقف محدد، أكبر بكثير من خطره الفعلي.',c:['خوف فوري يكاد يكون دائماً عند مواجهة الشيء أو الموقف.','تجنّب نشط أو احتمال بضيق شديد، ويستمر 6 أشهر عادة.','الخوف أكبر من الخطر الفعلي ومن المتوقع في السياق الثقافي.','حدّد النوع: حيوان، بيئة طبيعية، دم وحقن وإصابة، موقفي، آخر.'],w:['رهاب الدم والحقن يتميّز بارتفاع النبض ثم هبوطه والإغماء.','إذا كانت المواقف متعددة والخوف من عدم القدرة على الهروب: رهاب الساح. إذا كان المحفّز مُذكِّراً بصدمة: ما بعد الصدمة.']},
+agora:{k:'oth',n:'رهاب الساح',e:'Agoraphobia',v:'ليس من الاضطرابات الخمسة في هذه الأداة، لكنه أشهر فخ عند التفريق بينها.',c:['خوف في موقفين أو أكثر من خمسة: المواصلات العامة، الأماكن المفتوحة، الأماكن المغلقة، الطوابير والزحام، الخروج من البيت وحده.','السبب: صعوبة الهروب أو غياب المساعدة إذا ظهرت أعراض هلع أو أعراض محرجة.','يستمر 6 أشهر عادة.'],w:['تشخيص مستقل عن اضطراب الهلع في DSM-5-TR، وقد يجتمعان.']},
+sep:{k:'oth',n:'قلق الانفصال',e:'Separation Anxiety Disorder',v:'الخوف يتركّز على الابتعاد عن أشخاص التعلّق أو أن يصيبهم مكروه.',c:['المدة 4 أسابيع عند الأطفال و6 أشهر عادة عند البالغين.'],w:['قد يبدأ في البلوغ، فلا تستبعده لمجرد العمر.']},
+ocd:{k:'oth',n:'الوسواس القهري',e:'Obsessive-Compulsive Disorder',v:'الأفكار اقتحامية وغير مرغوبة، وتتبعها أفعال قهرية لتخفيف القلق.',c:['تأخذ الوساوس أو الأفعال القهرية وقتاً (أكثر من ساعة يومياً عادة) أو تسبب ضيقاً واضحاً.'],w:['صُنّف ضمن فئة مستقلة في DSM-5، وليس ضمن اضطرابات القلق.']},
+ill:{k:'oth',n:'قلق المرض',e:'Illness Anxiety Disorder',v:'الانشغال بفكرة الإصابة بمرض خطير، مع أعراض جسدية خفيفة أو غائبة.',c:['6 أشهر على الأقل، مع فحص متكرر أو تجنّب للأطباء.'],w:['إذا كانت الأعراض الجسدية بارزة ومزعجة فكّر بالاضطراب ذي الأعراض الجسدية.']},
+gad:{k:'gad',n:'اضطراب القلق المعمّم',e:'Generalized Anxiety Disorder',v:'هموم مفرطة في مجالات متعددة، صعبة التحكم، معظم الأيام لستة أشهر على الأقل.',c:['قلق وهمّ مفرطان معظم الأيام لمدة 6 أشهر على الأقل، حول أمور متعددة.','صعوبة في السيطرة على الهم.','3 أعراض أو أكثر من 6: تململ، تعب سريع، صعوبة تركيز، عصبية، شد عضلي، اضطراب نوم.','ضيق واضح أو تأثير على الأداء.'],w:['الهموم أمور حياتية واقعية، بعكس الأفكار الاقتحامية الغريبة في الوسواس القهري.','إذا ظهر القلق فقط خلال نوبة اكتئاب، فقد يفسّره الاكتئاب بشكل أفضل.']},
+mood:{k:'oth',n:'اضطراب آخر يفسّر القلق بشكل أفضل',e:'e.g. Major Depressive Disorder',v:'القلق هنا عرض ضمن اضطراب آخر، وليس اضطراباً مستقلاً.',c:['راجع معايير الاكتئاب: المزاج المنخفض وفقدان الاستمتاع لأسبوعين على الأقل.','راقب ما إذا بقي القلق بعد تحسّن المزاج.'],w:['القلق المصاحب للاكتئاب شائع جداً، ويُضاف له محدِّد with anxious distress.']},
+osad:{k:'oth',n:'اضطراب قلق آخر محدد أو غير محدد',e:'Other Specified / Unspecified Anxiety Disorder',v:'أعراض قلق مزعجة لكنها لا تكتمل لأي اضطراب محدد.',c:['وثّق السبب: مدة أقصر، أعراض أقل، أو صورة غير نمطية.','فكّر باضطراب التكيّف إذا وُجد ضغط واضح.'],w:['أعد التقييم مع الوقت؛ الصورة قد تكتمل لاحقاً.']}
+};
+const route=document.getElementById('route'),panel=document.getElementById('panel');
+let hist=[],cur='q1';
+const go=(to,label)=>{hist.push({from:cur,label});cur=to;draw()};
+const back=()=>{if(!hist.length)return;cur=hist.pop().from;draw()};
+const reset=()=>{hist=[];cur='q1';draw()};
+const stNow=()=>cur.startsWith('R:')?(N[hist[hist.length-1].from].s):N[cur].s;
+const draw=()=>{
+ const now=stNow(),res=cur.startsWith('R:'),picked={};
+ hist.forEach(h=>{picked[N[h.from].s]=h.label});
+ route.innerHTML=ST.map((s,i)=>{const cl=(res&&i===now)?'done':i<now?'done':i===now?'now':'';return `<li class="${cl}"><b>${s[0]}</b><small>${picked[i]||s[1]}</small></li>`}).join('');
+ const trail=hist.length?`<div class="trail">${hist.map(h=>`<span>${h.label}</span>`).join('')}</div>`:'';
+ const bar=`<div class="bar"><button class="btn" id="bk" ${hist.length?'':'disabled'}>رجوع خطوة</button><button class="btn" id="rs">ابدأ من جديد</button>${res?'<a class="btn main" href="#cases" style="text-decoration:none">جرّب حالة تدريبية</a>':''}</div>`;
+ if(res){const r=R[cur.slice(2)];
+  panel.innerHTML=`<div class="card res" style="--k:var(--c-${r.k})" aria-live="polite"><span class="tag">الاتجاه المرجّح</span><h3>${r.n}</h3><p>${E(r.e)}</p><p class="v">${r.v}</p><div class="cols"><div><h4>تحقّق من</h4><ul class="l">${r.c.map(x=>`<li>${x}</li>`).join('')}</ul></div><div><h4>انتبه إلى</h4><ul class="l">${r.w.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>${trail}${bar}</div>`;
+ }else{const n=N[cur];
+  panel.innerHTML=`<div class="card" aria-live="polite"><p class="q">${n.q}</p>${n.h?`<p class="hint">${n.h}</p>`:''}<div class="opts">${n.o.map((o,i)=>`<button class="opt" data-i="${i}">${o[0]}</button>`).join('')}</div>${trail}${bar}</div>`;
+  panel.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{const o=n.o[+b.dataset.i];go(o[1],o[0])}));
+ }
+ document.getElementById('bk').addEventListener('click',back);
+ document.getElementById('rs').addEventListener('click',reset);
+};
+draw();
+
+const NM={gad:'القلق المعمّم',panic:'الهلع',sad:'القلق الاجتماعي',phobia:'الرهاب المحدد',ptsd:'ما بعد الصدمة'};
+const P=[
+['panic','phobia','الهلع','الرهاب المحدد','هل تأتي النوبات <em>فجأة</em>، أم فقط أمام الشيء المخيف؟','نوبات غير متوقعة، والخوف من النوبة نفسها وعواقبها.','خوف فوري وثابت أمام شيء محدد، والنوبات تحدث عنده فقط.'],
+['panic','sad','الهلع','القلق الاجتماعي','ما الذي يخشاه <em>أثناء</em> النوبة؟','يخاف من النوبة وأعراضها الجسدية، وقد يستيقظ من النوم بنوبة.','يخاف أن يلاحظ الآخرون قلقه ويحكموا عليه، والنوبات في المواقف الاجتماعية فقط.'],
+['sad','oth','القلق الاجتماعي','رهاب الساح','لماذا يتجنّب <em>الزحام</em>؟','خوفاً من التقييم والإحراج أمام الناس.','خوفاً من ألا يستطيع الهرب أو يجد مساعدة إذا شعر بأعراض، حتى لو لم يره أحد.'],
+['phobia','oth','الرهاب المحدد','رهاب الساح','كم <em>موقفاً</em> يخيفه، وممّ يخاف فيه؟','موقف واحد محدد (المصعد فقط مثلاً)، والخوف من الموقف نفسه.','موقفان أو أكثر من المواقف الخمسة، والخوف من العجز عن الهروب.'],
+['gad','sad','القلق المعمّم','القلق الاجتماعي','هل الهموم حول <em>نظرة الناس</em> فقط؟','هموم متعددة: عمل، صحة، مال، عائلة، وتبقى حتى لو لم يُقيّمه أحد.','الهمّ يتركّز على أدائه أمام الآخرين وحكمهم عليه.'],
+['gad','oth','القلق المعمّم','الوسواس القهري','كيف تبدو <em>الأفكار</em> المقلقة؟','هموم حياتية واقعية عن المستقبل، يراها منطقية لكنها زائدة.','أفكار اقتحامية غريبة أو مزعجة (تلوث، إيذاء، شك) تتبعها أفعال قهرية.'],
+['gad','oth','القلق المعمّم','الاكتئاب','هل القلق مستقل عن <em>المزاج</em>؟','القلق حاضر خارج نوبات الاكتئاب، والاستمتاع محفوظ غالباً.','القلق يظهر مع المزاج المنخفض وفقدان الاستمتاع ويتراجع بتحسّنهما.'],
+['ptsd','phobia','ما بعد الصدمة','الرهاب المحدد','هل يوجد <em>اقتحام</em> وتغيّر في المزاج؟','ذكريات وكوابيس اقتحامية، ذنب أو انفصال، واستثارة دائمة إلى جانب التجنّب.','خوف وتجنّب للموقف فقط، دون اقتحام أو تغيّرات مزاجية واسعة، حتى لو بدأ بعد حدث.'],
+['ptsd','panic','ما بعد الصدمة','الهلع','ما الذي <em>يطلق</em> النوبة؟','النوبات تنطلق عند التذكير بالحدث الصادم.','نوبات غير متوقعة لا ترتبط بذكرى معينة.'],
+['ptsd','oth','ما بعد الصدمة','الكرب الحاد','كم <em>مضى</em> على الحدث؟','أكثر من شهر.','من 3 أيام إلى شهر؛ يُعاد التقييم إن استمرت الأعراض.']
+];
+const pairs=document.getElementById('pairs'),pair=document.getElementById('pair');
+let pi=0;
+const drawPair=()=>{
+ pairs.innerHTML=P.map((p,i)=>`<button class="pill" aria-pressed="${i===pi}" data-i="${i}">${p[2]} أم ${p[3]}</button>`).join('');
+ const p=P[pi];
+ pair.innerHTML=`<p class="keyq">${p[4]}</p><div class="vs"><div class="side" style="--k:var(--c-${p[0]})"><h3>${p[2]}</h3><p>${p[5]}</p></div><div class="mid">أم</div><div class="side" style="--k:var(--c-${p[1]})"><h3>${p[3]}</h3><p>${p[6]}</p></div></div>`;
+ pairs.querySelectorAll('.pill').forEach(b=>b.addEventListener('click',()=>{pi=+b.dataset.i;drawPair()}));
+};
+drawPair();
+
+const K=['gad','panic','sad','phobia','ptsd'];
+const F=[
+['محور الخوف','أمور حياتية متعددة','النوبة نفسها وعواقبها','تقييم الآخرين','شيء أو موقف محدد','مُذكِّرات الحدث الصادم'],
+['المحفّز','قلق منتشر بلا محفّز واحد','بعض النوبات بلا محفّز','مواقف اجتماعية وأداء','الشيء المخيف نفسه','ما يذكّر بالحدث'],
+['نوبات الهلع','ممكنة لكنها ليست المركز','أساسية ومتكررة','عند المواقف الاجتماعية فقط','عند المحفّز فقط','عند التذكير'],
+['المدة الدنيا','6 أشهر','شهر بعد النوبة','6 أشهر عادة','6 أشهر عادة','أكثر من شهر'],
+['نمط التجنّب','قليل؛ طمأنة وتأجيل','أنشطة ترفع النبض وأماكن بلا مخرج','التقديم والأكل أمام الآخرين','الشيء أو الموقف المحدد','أماكن وأشخاص وأفكار مرتبطة بالحدث'],
+['الفكرة المركزية','ماذا لو حدث شيء سيئ؟','سأموت أو أفقد السيطرة','سيرونني محرجاً أو غبياً','هذا الشيء سيؤذيني','العالم خطير، وربما أنا السبب']
+];
+document.getElementById('ftable').innerHTML=`<thead><tr><th></th>${K.map(k=>`<th style="--k:var(--c-${k})">${NM[k]}</th>`).join('')}</tr></thead><tbody>${F.map(r=>`<tr><th>${r[0]}</th>${r.slice(1).map((c,i)=>`<td data-l="${NM[K[i]]}">${c}</td>`).join('')}</tr>`).join('')}</tbody>`;
+
+const DUR={gad:'6 أشهر على الأقل',panic:'شهر بعد النوبة',sad:'6 أشهر عادة',phobia:'6 أشهر عادة',ptsd:'أكثر من شهر'};
+document.getElementById('crit').innerHTML=K.map(k=>{const r=R[k];return `<article class="card crit" style="--k:var(--c-${k})"><h3>${r.n}</h3><p class="meta">${E(r.e)} · المدة: ${DUR[k]}</p><ul class="l">${r.c.map(x=>`<li>${x}</li>`).join('')}</ul></article>`}).join('');
+
+const CS=[
+['ليلى، 27 عاماً','خلال الشهرين الماضيين أصابتها أربع نوبات مفاجئة من خفقان شديد وضيق نفس وشعور بأنها ستموت، إحداها أيقظتها من النوم. ذهبت إلى الطوارئ مرتين وكان تخطيط القلب وفحص الغدة طبيعيين. منذ ذلك الحين تراقب نبضها باستمرار، وتوقفت عن القهوة والرياضة خوفاً من نوبة جديدة.',['القلق المعمّم','اضطراب الهلع','رهاب محدد (موقفي)','قلق المرض'],1,'نوبات غير متوقعة، إحداها أثناء النوم، تلاها أكثر من شهر من القلق وتغيير السلوك، مع استبعاد السبب الطبي.','نوبة أيقظتها من النوم'],
+['سامر، 38 عاماً','منذ أكثر من عشر سنوات يرفض استخدام المصاعد، ويصعد تسعة طوابق على الدرج يومياً إلى مكتبه. عندما اضطر مرة لدخول مصعد أصابته نوبة هلع. لا يخاف من المواصلات أو الزحام أو الأماكن العامة، وحياته طبيعية خارج هذا الموقف.',['اضطراب الهلع','رهاب الساح','رهاب محدد (موقفي)','القلق الاجتماعي'],2,'موقف واحد محدد، والنوبة مرتبطة به فقط فهي متوقعة. رهاب الساح يحتاج موقفين أو أكثر.','لا يخاف من المواصلات أو الزحام'],
+['ريم، 20 عاماً','طالبة جامعية. منذ سنتين تتجنب العروض التقديمية وتتغيب عن المحاضرات التي فيها نقاش، وتأكل وحدها بعيداً عن الكافتيريا. تخاف أن يلاحظ الآخرون احمرار وجهها ويظنوها غبية. مع عائلتها وصديقتها المقربة تكون مرتاحة تماماً.',['القلق المعمّم','اضطراب القلق الاجتماعي','اضطراب الهلع','رهاب الساح'],1,'الخوف مرتبط بالتقييم والإحراج أمام الآخرين، ويختفي في البيئة الآمنة، والمدة أكثر من 6 أشهر.','يظنوها غبية'],
+['خالد، 45 عاماً','منذ أكثر من سنة لا يتوقف عن القلق: على دراسة أولاده، وصحة والدته، ووضعه المالي رغم أنه مستقر، وأخطاء محتملة في العمل. يقول: أعرف أنني أبالغ لكن لا أستطيع التوقف. يعاني من شد في الرقبة ونوم متقطع وعصبية وتعب مستمر. ما زال يستمتع بلقاء أصدقائه ومزاجه مستقر.',['الاكتئاب الجسيم','اضطراب القلق المعمّم','قلق المرض','القلق الاجتماعي'],1,'هموم في مجالات متعددة لأكثر من 6 أشهر، صعبة التحكم، مع 4 أعراض. المزاج والاستمتاع محفوظان، فالاكتئاب لا يفسّر الصورة.','لا أستطيع التوقف، ومزاجه مستقر'],
+['مها، 31 عاماً','قبل أربعة أشهر نجت من حادث سير توفيت فيه صديقتها. منذ ذلك الحين تعود إليها مشاهد الحادث فجأة، وترى كوابيس متكررة، وتتجنب الطريق نفسه وأي حديث عنه. تلوم نفسها لأنها اقترحت الرحلة، وتشعر بالانفصال عن الناس، وتفزع من أي صوت فرامل.',['اضطراب الكرب الحاد','اضطراب ما بعد الصدمة','رهاب محدد (القيادة)','الاكتئاب الجسيم'],1,'حدث يستوفي المعيار A، وأعراض في المجموعات الأربع (اقتحام، تجنّب، لوم وانفصال، فزع)، والمدة أكثر من شهر.','قبل أربعة أشهر'],
+['يوسف، 29 عاماً','منذ شهرين يشعر بتوتر دائم وارتجاف في يديه وخفقان، ويتعرّق أكثر من المعتاد ولا يحتمل الحر. نقص وزنه 5 كيلوغرامات رغم أن شهيته زادت. لا توجد ضغوط جديدة في حياته، ولم يزر طبيباً بعد.',['القلق المعمّم','اضطراب الهلع','قلق ناتج عن حالة طبية: يجب استبعاد الغدة أولاً','قلق المرض'],2,'نقص الوزن مع زيادة الشهية وعدم تحمّل الحر علامات توحي بفرط نشاط الغدة الدرقية. لا يُشخَّص اضطراب قلق قبل الفحص الطبي، كما أن مدة الشهرين لا تكفي للقلق المعمّم.','نقص الوزن رغم زيادة الشهية'],
+['نور، 23 عاماً','قبل عشرة أيام اشتعل حريق في المبنى الذي تسكنه وخرجت من بين الدخان بصعوبة. منذ ذلك الحين لا تنام جيداً، وتعود إليها صورة النار، وتشعر كأن ما حدث لم يكن حقيقياً، وتتجنب العودة إلى الشقة، وتفزع من رائحة أي دخان.',['اضطراب ما بعد الصدمة','اضطراب الكرب الحاد','اضطراب التكيّف','رهاب محدد'],1,'الصورة تشبه ما بعد الصدمة، لكن المدة بين 3 أيام وشهر، ومعها أعراض تفارقية. يُعاد التقييم إن استمرت بعد شهر.','قبل عشرة أيام'],
+['عمر، 24 عاماً','منذ طفولته يخاف بشدة من الكلاب. عندما يرى كلباً في الشارع يصاب بنوبة هلع كاملة: خفقان وتعرّق وارتجاف. يغيّر طريقه إلى الجامعة لتجنّب حي فيه كلاب. لا تأتيه نوبات في أي موقف آخر، ولا يتذكر حدثاً مؤلماً مع كلب.',['اضطراب الهلع','رهاب محدد (حيوان)','اضطراب ما بعد الصدمة','القلق المعمّم'],1,'النوبات متوقعة ومرتبطة بمحفّز واحد، فهي محدِّد ضمن الرهاب وليست اضطراب هلع. لا حدث صادم ولا اقتحام.','لا تأتيه نوبات في أي موقف آخر'],
+['سلمى، 34 عاماً','منذ ثمانية أشهر لم تعد تركب الحافلة، وتتجنب المولات والطوابير، ولا تخرج من البيت إلا مع زوجها. تقول إنها تخاف أن تشعر بدوخة أو تفقد السيطرة فلا تستطيع الهرب أو لا يساعدها أحد. لا يهمّها رأي الناس فيها.',['القلق الاجتماعي','رهاب الساح','رهاب محدد (موقفي)','القلق المعمّم'],1,'أكثر من موقفين من المواقف الخمسة، والخوف من صعوبة الهروب لا من التقييم. رهاب الساح خارج الخمسة، لكنه أشهر فخ في هذه المجموعة.','لا يهمّها رأي الناس'],
+['رامي، 40 عاماً','أجّل فحوصات الدم التي طلبها طبيبه منذ ثلاث سنوات. كلما رأى إبرة أو دماً يرتفع نبضه ثم يشعر بدوخة وشحوب، وأغمي عليه مرتين في المختبر. يقول إنه لا يخاف من نتيجة الفحص، بل من الإبرة نفسها.',['قلق المرض','اضطراب الهلع','رهاب محدد (دم وحقن وإصابة)','اضطراب ما بعد الصدمة'],2,'الاستجابة الثنائية، ارتفاع النبض ثم هبوطه والإغماء، خاصة بهذا النوع. الخوف من الإبرة لا من المرض يستبعد قلق المرض.','أغمي عليه مرتين']
+];
+const quiz=document.getElementById('quiz'),qside=document.getElementById('qside');
+let qi=0;const ans=Array(CS.length).fill(null);
+const drawQ=()=>{
+ const c=CS[qi],a=ans[qi],done=a!==null,score=ans.filter((x,i)=>x===CS[i][3]).length,count=ans.filter(x=>x!==null).length;
+ quiz.innerHTML=`<div class="dots">${CS.map((_,i)=>`<button aria-label="الحالة ${i+1}" data-i="${i}" class="${i===qi?'cur ':''}${ans[i]===null?'':ans[i]===CS[i][3]?'ok':'no'}">${i+1}</button>`).join('')}</div><div class="card case"><h3>${c[0]}</h3><p class="x">${c[1]}</p><div class="opts">${c[2].map((o,i)=>`<button class="opt ${done&&i===c[3]?'right':''} ${done&&i===a&&a!==c[3]?'wrong':''}" data-o="${i}" ${done?'disabled':''}>${o}</button>`).join('')}</div>${done?`<div class="fb" aria-live="polite"><b>${a===c[3]?'إجابة صحيحة.':'ليست هذه. الإجابة: '+c[2][c[3]]+'.'}</b><p>${c[4]}</p><p style="margin-top:6px;color:var(--mute)">مفتاح الحالة: ${c[5]}</p></div>`:''}<div class="bar"><button class="btn" id="pv" ${qi?'':'disabled'}>الحالة السابقة</button><button class="btn main" id="nx" ${qi<CS.length-1?'':'disabled'}>الحالة التالية</button></div></div>`;
+ qside.innerHTML=`<h3>نتيجتك</h3><p class="score">${score}<span style="font-size:.4em;color:var(--mute)"> من ${count||0}</span></p><p class="sub">أجبت عن ${count} من ${CS.length} حالات.</p><p class="sub">إذا أخطأت في حالة، جرّبها في شجرة القرار وانظر عند أي سؤال افترق طريقك.</p><div class="bar"><a class="btn" href="#tree" style="text-decoration:none">افتح الشجرة</a><button class="btn" id="qr">إعادة الحالات</button></div>`;
+ quiz.querySelectorAll('.dots button').forEach(b=>b.addEventListener('click',()=>{qi=+b.dataset.i;drawQ()}));
+ quiz.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{ans[qi]=+b.dataset.o;drawQ()}));
+ document.getElementById('pv').addEventListener('click',()=>{qi--;drawQ()});
+ document.getElementById('nx').addEventListener('click',()=>{qi++;drawQ()});
+ document.getElementById('qr').addEventListener('click',()=>{ans.fill(null);qi=0;drawQ()});
+};
+drawQ();
+}
+</script>
+</body>
+</html>
